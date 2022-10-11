@@ -1,3 +1,4 @@
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,7 +6,8 @@ public class Main {
     public static String bill (String cusName, String cusType, double totalValue) {
         double totalPay = totalValue;
         double totalSale = 0;
-        String billDetails = "Customer: " + cusName + "\n";
+        String billDetails = "** BILL DETAILS **\n";
+        billDetails += "Customer: " + cusName + "\n";
         billDetails += "Type: " + cusType + "\n";
 
         if (cusType == "vip1") {
@@ -25,8 +27,9 @@ public class Main {
 
         totalPay -= totalSale;
 
-        billDetails += "Total Sale: " + totalSale * 1000 + " VND\n";
-        billDetails += "Total Pay: " + totalPay * 1000 + " VND\n";
+        billDetails += "Total Value: " + (int) totalValue * 1000 + " VND\n";
+        billDetails += "Total Sale: " + (int) totalSale * 1000 + " VND\n";
+        billDetails += "Total Pay: " + (int) totalPay * 1000 + " VND\n";
 
         return billDetails;
     }
@@ -57,10 +60,9 @@ public class Main {
         do {
             System.out.print("Product: ");
             String product = scanner.next();
-            product = product.toLowerCase();
             double productPrice = 0;
 
-            switch (product) {
+            switch (product.toLowerCase()) {
                 case "ao":
                     productPrice = 200;
                     break;
@@ -70,22 +72,30 @@ public class Main {
                 case "khan quang":
                     productPrice = 100;
                     break;
-                case "\n":
-                    flag = false;
-                    break;
                 default:
-                    System.out.println("Invalid Product");
+                    System.out.println("Invalid Product!");
                     flag = false;
                     break;
             }
 
-            System.out.print("Quantity: ");
-            int quantity = scanner.nextInt();
-            totalValue += productPrice * quantity;
+            if(flag) {
+                System.out.print("Quantity: ");
+                int quantity = scanner.nextInt();
+                totalValue += productPrice * quantity;
+            }
+
+            System.out.print("Continue?: ");
+            String cont = scanner.next();
+            if (cont.toLowerCase() == "yes") {
+                flag = true;
+            } else {
+                flag = false;
+            }
         } while (flag);
 
-        String customerName = scanner.next();
-        String customerType = scanner.next();
+        scanner.nextLine();
+        String customerName = scanner.nextLine();
+        String customerType = scanner.nextLine();
         customerType = customerType.toLowerCase();
 
         System.out.println(bill(customerName, customerType, totalValue));
