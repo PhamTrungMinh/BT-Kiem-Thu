@@ -82,6 +82,53 @@ public class Main {
 //
 //        System.out.println(bill(customerName, customerType, totalValue));
 
+        double totalValue = 0;
+        Scanner scanner = new Scanner(System.in);
+        boolean flag = true;
+
+        do {
+            System.out.print("Product: ");
+            String product = scanner.next();
+            double productPrice = 0;
+
+            switch (product.toLowerCase()) {
+                case "ao":
+                    productPrice = 200;
+                    break;
+                case "quan":
+                    productPrice = 300;
+                    break;
+                case "khan quang":
+                    productPrice = 100;
+                    break;
+                default:
+                    System.out.println("Invalid Product!");
+                    flag = false;
+                    break;
+            }
+
+            if(flag) {
+                System.out.print("Quantity: ");
+                int quantity = scanner.nextInt();
+                totalValue += productPrice * quantity;
+            }
+
+            System.out.print("Continue?: ");
+            String cont = scanner.next();
+            if (cont.toLowerCase() == "yes") {
+                flag = true;
+            } else {
+                flag = false;
+            }
+        } while (flag);
+
+        scanner.nextLine();
+        String customerName = scanner.nextLine();
+        String customerType = scanner.nextLine();
+        customerType = customerType.toLowerCase();
+
+        System.out.println(bill(customerName, customerType, totalValue));
+
         System.out.println(bill("A", "norm", 10000));
     }
 }
