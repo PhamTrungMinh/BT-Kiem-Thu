@@ -68,7 +68,5 @@ public class Main {
         customerType = customerType.toLowerCase();
 
         System.out.println(bill(customerName, customerType, totalValue));
-
-        System.out.println(bill("A", "norm", 10000));
     }
 }
