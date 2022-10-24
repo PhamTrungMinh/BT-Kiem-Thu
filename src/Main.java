@@ -24,8 +24,6 @@ public class Main {
         }
 
         totalPay -= totalSale;
-        billDetails += "Total Value: " + (int) totalValue * 1000 + " VND\n";
-        billDetails += "Total Sale: " + (int) totalSale * 1000 + " VND\n";
         billDetails += "Total Pay: " + (int) totalPay * 1000 + " VND\n";
 
         return billDetails;
@@ -38,7 +36,7 @@ public class Main {
 
         do {
             System.out.print("Product: ");
-            String product = scanner.next();
+            String product = scanner.nextLine();
             double productPrice = 0;
 
             switch (product.toLowerCase()) {
@@ -60,9 +58,9 @@ public class Main {
             System.out.print("Continue?: ");
             String cont = scanner.next();
             flag = cont.equalsIgnoreCase("yes");
+            scanner.nextLine();
         } while (flag);
 
-        scanner.nextLine();
         String customerName = scanner.nextLine();
         String customerType = scanner.nextLine();
         customerType = customerType.toLowerCase();
